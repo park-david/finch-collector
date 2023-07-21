@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<h1>Finch List</h1>
+
+{% for finch in finches %}
+  <a href="{% url 'detail' finch.id %}">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ finch.name }}</span>
+        <p>Breed: {{ finch.breed }}</p>
+        <p>Habitat: {{ finch.habitat }}</p>
+        <p>U.S/Canada Population Estimate: {{ finch.us_canada_population_estimate|intcomma }}</p>
+        <p>Population Trend: {{ finch.get_population_trend_display }}</p>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
